@@ -1,0 +1,47 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=1036
+
+
+Find the matching ISO3166-1 (http://en.wikipedia.org/wiki/ISO_3166-1) country code or name when passed the other.
+
+
+Usage
+
+  Cream_iso3166_1(word, ...)
+
+o Test {word} for match of iso3166_1-compliant country name, 3- or 2-letter abbreviation, or 3-digit numerical code:
+  * Returns name if {word} matches either abbreviation.
+  * Returns 2-letter if {word} matches name or number.
+  * Returns 0 if no match is made.
+o Use {optional} argument to force a given return:
+  * Returns 3-letter if {optional} is "3" and {word} matches.
+  * Returns 2-letter if {optional} is "2" and {word} matches.
+  * Returns name if {optional} is "name" and {word} matches.
+  * Returns number if {optional} is "number" and {word} matches.
+  * Returns 0 if no match is made.
+o Matching is case-insensitive. But return values are capitalized according to the standard. (Name is title case, abbreviations are UPPER CASE.)
+
+
+Examples
+
+  :echo Cream_iso3166_1("AND")               returns "Andorra"
+  :echo Cream_iso3166_1("AD")                  returns "Andorra"
+  :echo Cream_iso3166_1("Andorra")          returns "AD"
+  :echo Cream_iso3166_1("020")                 returns "AD"
+
+  Return format forced:
+
+  :echo Cream_iso3166_1("AND", "3")        returns "AND"
+  :echo Cream_iso3166_1("AD", "3")           returns "AND"
+  :echo Cream_iso3166_1("Andorra", "3")   returns "AND"
+  :echo Cream_iso3166_1("020", "3")          returns "AND"
+
+  :echo Cream_iso3166_1("020", "2")          returns "AD"
+  :echo Cream_iso3166_1("020", "name")   returns "Andorra"
+  :echo Cream_iso3166_1("AD", "number") returns "020"
+
+  Name or abbreviation unmatched:
+
+  :echo Cream_iso3166_1("not-a-name")     returns 0
+  :echo Cream_iso3166_1("not")                   returns 0
+
+
